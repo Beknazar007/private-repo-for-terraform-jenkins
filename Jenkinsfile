@@ -9,9 +9,14 @@ pipeline{
     }
 
     stages {
-        stage('Init and Plan') {
+        stage('Parameters') {
             steps {
                 echo "Hello ${params.Person}"
+                echo "Biography: ${params.TEXT}"
+                echo "Toggle: ${params.TOGGLE}"
+                echo "Choice: ${params.CHOICE}"
+                echo "Password: ${params.PASSWORD}"
+
             }
         }
 
