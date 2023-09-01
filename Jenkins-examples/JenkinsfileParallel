@@ -1,0 +1,48 @@
+pipeline {
+    agent none
+
+    stages {
+        stage('Non-Parallel Stage') {
+            agent {
+                label "docker"
+            } 
+            steps {                   
+                echo 'This stage will be executed first.'
+                sleep 10
+            }
+        }
+        stage('Parallel Stage') {
+            parallel {
+                stage('STAGE A') {
+                    agent {
+                        label "docker"
+                    }
+                    steps {
+                        echo "On STAGE A"
+                        sleep 10
+                    }
+                }
+                stage('STAGE C') {
+                    agent {
+                        label "docker"
+                    }
+                    stages {
+                        stage('Nested 1') {
+                            steps {
+                                echo "In stage Nested 1 within STAGE C"
+                                sleep 10 
+                            }
+                        }
+                        stage('Nested 2') {
+                            steps {
+                                echo "In stage Nested 2 within STAGE C"
+                                sleep 10
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+

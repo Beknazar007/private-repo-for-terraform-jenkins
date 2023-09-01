@@ -1,0 +1,17 @@
+
+
+pipeline {
+    agent any
+    stages {
+        stage('Push') {
+            steps {
+                checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'github', url: 'https://github.com/Beknazar007/deploy-jenkins-pipeline.git']])
+                }
+            }
+        }
+    post { 
+        always { 
+            echo 'Successful'
+        }
+    }        
+}

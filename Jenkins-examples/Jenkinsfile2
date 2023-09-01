@@ -1,0 +1,13 @@
+pipeline {
+    agent any
+    triggers {
+        cron('4 * * * *')
+    }
+    stages {
+        stage('Assalamu Aleikum') {
+            steps {
+                echo 'Assalamu Aleikum'
+            }
+        }
+    }
+}

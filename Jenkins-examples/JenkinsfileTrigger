@@ -1,0 +1,19 @@
+pipeline {
+    agent { label 'docker' }
+
+    stages {        
+        stage('trigger') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'remote-trigger', passwordVariable: 'token', usernameVariable: 'username')]) {
+                    sh "curl -u $username:$token http://35.154.91.164:8080/job/firstday/build?token=$token"
+                }
+                sh "curl -u $username:$username http://35.154.91.164:8080/job/firstday/build?token=$token"
+            }
+        }
+    }
+    post { 
+        always { 
+            echo 'Successful'
+        }
+    }
+}

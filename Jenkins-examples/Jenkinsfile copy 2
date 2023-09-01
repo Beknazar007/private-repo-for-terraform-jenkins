@@ -1,0 +1,20 @@
+pipeline {
+agent { label 'docker' }    // could specify globally or only for one stage then you should paste your 
+    stages {
+        stage('Assalamu Aleikum') {
+            steps {
+                sh 'echo "Assalamu Aleikum" ${BUILD_NUMBER} .'
+            }
+        }
+        stage('Name of second stage') {
+            steps {
+                sh 'echo "Assalamu Aleikum" ${BUILD_NUMBER}+1 .'
+            }
+        }        
+    }
+    post { 
+        always { 
+            echo 'Successful'
+        }
+    }
+}
