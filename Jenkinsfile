@@ -1,22 +1,46 @@
 @Library('mySharedLibrary') _
 pipeline {
     agent any
-
+        parameters {
+            choice(
+                name: 'ENVIRONMENT',
+                choices: ['dev', 'prod'],
+                description: 'Select the environment'
+            )
+            credentials (
+                credentialType: 'com.cloudbees.jenkins.plugins.awscredentials.AWSCredentialsImpl', 
+                defaultValue: awsCredentialId , 
+                description: '''Select AWS credentials for you to deploy''',
+                name: 'AWS_SECRET_ACCESS_KEY', 
+                required: true
+            )
+            text(
+                description: 'Terraform Backend S3 Bucket Name',
+                name: 'TERRAFORM_BACKEND_S3_BUCKET',
+                defaultValue: backendConfig.s3_bucket_name
+            )
+            text(
+                description: 'Terraform Backend Path',
+                name: 'TERRAFORM_BACKEND_KEY_PATH',
+                defaultValue: backendConfig.aws_region
+            )
+        }
     stages {
         stage('Terraform Deployment') {
             steps {
                 script {
                     def terraformConfig = [
-                        awsCredentialId: 'your-aws-credential-id', // Customize as needed
+                        awsCredentialId: params.AWS_SECRET_ACCESS_KEY, // Customize as needed
                         backendConfig: [
-                            s3_bucket_name: 'your-s3-bucket-name',
-                            key_path: 'your-dynamodb-table',
+                            s3_bucket_name: params.TERRAFORM_BACKEND_S3_BUCKET,
+                            key_path: params.TERRAFORM_BACKEND_KEY_PATH,
                             aws_region: 'us-east-1'
                         ]
+                        envStage: params.ENVIRONMENT
                     ]
 
                     // Load the terraform.groovy library
-                    load 'path/to/terraform.groovy'
+
 
                     // Call the 'call' function from the loaded library
                     terraform(terraformConfig)
