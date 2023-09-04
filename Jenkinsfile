@@ -1,1 +1,1 @@
-@Library('my-shared-library') _
+@Library('mySharedLibrary') _
