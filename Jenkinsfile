@@ -17,12 +17,12 @@ pipeline {
             text(
                 description: 'Terraform Backend S3 Bucket Name',
                 name: 'TERRAFORM_BACKEND_S3_BUCKET',
-                defaultValue: backendConfig.s3_bucket_name
+                defaultValue: ''
             )
             text(
                 description: 'Terraform Backend Path',
                 name: 'TERRAFORM_BACKEND_KEY_PATH',
-                defaultValue: backendConfig.aws_region
+                defaultValue: ''
             )
         }
     stages {
