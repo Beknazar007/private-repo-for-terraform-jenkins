@@ -9,7 +9,7 @@ pipeline {
             )
             credentials (
                 credentialType: 'com.cloudbees.jenkins.plugins.awscredentials.AWSCredentialsImpl', 
-                defaultValue: awsCredentialId , 
+                defaultValue: '' , 
                 description: '''Select AWS credentials for you to deploy''',
                 name: 'AWS_SECRET_ACCESS_KEY', 
                 required: true
