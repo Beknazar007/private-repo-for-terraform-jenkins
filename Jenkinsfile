@@ -1,6 +1,6 @@
 @Library('mySharedLibrary') _
 
-TerraformPipeline([
+terraform([
                         awsCredentialId: params.AWS_SECRET_ACCESS_KEY, // Customize as needed
                         backendConfig: [
                             s3_bucket_name: params.TERRAFORM_BACKEND_S3_BUCKET,
