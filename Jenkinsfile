@@ -5,9 +5,7 @@ pipeline {
     stages {
         stage("Library"){
             steps{
-                script{
-                alik()
-                }
+             echo "Hello world"
                 }
             
         }
