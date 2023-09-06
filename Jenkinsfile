@@ -5,7 +5,7 @@ pipeline {
     stages {
         stage("Library"){
             steps{
-             echo "Hello world"
+             echo "Hello world triggered pipe"
                 }
             
         }
