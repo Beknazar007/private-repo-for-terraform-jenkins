@@ -1,4 +1,4 @@
-@Library('mySharedLibrary') _
+@Library('MySharedLib') _
 
 terraform([
                         awsCredentialId: params.AWS_SECRET_ACCESS_KEY, // Customize as needed
