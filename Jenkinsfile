@@ -5,7 +5,7 @@ pipeline {
     stages {
         stage("Library"){
             steps{
-             echo "Hello world triggered pipe"
+             echo "Hello world triggered pipe ${GIT_COMMIT}"
                 }
             
         }
